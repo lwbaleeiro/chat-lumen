@@ -265,3 +265,18 @@ ul {
 button {
   margin-left: 10px;
 }
+
+.folder-chats.dragging-over {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 2px dashed #666;
+}
+
+.folder-drop-area {
+  transition: all 0.3s ease;
+}
+
+.folder-drop-area.dragging-over {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 2px dashed #666;
+  padding: 10px;
+}

@@ -37,6 +37,10 @@ function App() {
 
   const deleteConversation = (id) => {
     setConversations(conversations.filter(conv => conv.id !== id));
+    setFolders(folders.map(folder => ({
+      ...folder,
+      chats: folder.chats.filter(chatId => chatId !== id)
+    })));
     if (currentConversationId === id) {
       setCurrentConversationId(null);
     }
@@ -69,19 +73,20 @@ function App() {
   };
 
   const moveToFolder = (conversationId, folderId) => {
-    // Remove a conversa do estado de conversas
-    const updatedConversations = conversations.filter(conv => conv.id !== conversationId);
-  
-    // Adiciona a conversa à pasta correspondente
-    const updatedFolders = folders.map(folder => {
-      if (folder.id === folderId) {
-        return { ...folder, chats: [...folder.chats, conversationId] };
-      }
-      return folder;
+    setFolders(prevFolders => {
+      const newFolders = prevFolders.map(folder => {
+        // Remove o chat de qualquer pasta existente
+        if (folder.chats.includes(conversationId)) {
+          return { ...folder, chats: folder.chats.filter(id => id !== conversationId) };
+        }
+        // Adiciona à nova pasta, se folderId não for null
+        if (folder.id === folderId) {
+          return { ...folder, chats: [...folder.chats, conversationId] };
+        }
+        return folder;
+      });
+      return newFolders;
     });
-  
-    setConversations(updatedConversations);
-    setFolders(updatedFolders);
   };
 
   const toggleFolderVisibility = (folderId) => {
@@ -93,15 +98,21 @@ function App() {
     }));
   };
 
-  // Funções para reordenar itens
-  const reorderConversations = (newConversations) => {
-    // Atualiza apenas as conversas "soltas"
-    const others = conversations.filter(conv => folders.some(folder => folder.chats.includes(conv.id)));
-    setConversations([...newConversations, ...others]);
+  const reorderConversations = (newOrder) => {
+    // Reordena apenas as conversas "soltas"
+    const unsorted = conversations.filter(conv => 
+      !folders.some(folder => folder.chats.includes(conv.id))
+    );
+    const reordered = newOrder.map(id => unsorted.find(conv => conv.id === id));
+    const sorted = conversations.filter(conv => 
+      folders.some(folder => folder.chats.includes(conv.id))
+    );
+    setConversations([...reordered, ...sorted]);
   };
 
-  const reorderFolders = (newFolders) => {
-    setFolders(newFolders);
+  const reorderFolders = (newFoldersOrder) => {
+    const reordered = newFoldersOrder.map(id => folders.find(folder => folder.id === id));
+    setFolders(reordered);
   };
 
   const reorderFolderChats = (folderId, newChatOrder) => {
@@ -134,7 +145,7 @@ function App() {
       />
       <div className="main-content">
         <Header />
-        {currentConversationId ? (
+        {currentConversationId && currentConversation ? (
           <ChatArea 
             conversation={currentConversation.messages} 
             onSendMessage={handleSendMessage}
