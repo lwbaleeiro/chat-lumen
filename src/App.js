@@ -7,7 +7,7 @@ import WelcomeScreen from './components/WelcomeScreen';
 
 function App() {
   const [conversations, setConversations] = useState([]);
-  const [folders, setFolders] = useState([]); // Estado para pastas
+  const [folders, setFolders] = useState([]);
   const [currentConversationId, setCurrentConversationId] = useState(null);
 
   const createNewChat = () => {
@@ -22,7 +22,7 @@ function App() {
         const updatedMessages = [
           ...conv.messages,
           { user: 'You', message },
-          { user: 'AI', message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' }
+          { user: 'AI', message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' }
         ];
         return { ...conv, messages: updatedMessages, title: message.slice(0, 30) + '...' };
       }
@@ -38,7 +38,7 @@ function App() {
   const deleteConversation = (id) => {
     setConversations(conversations.filter(conv => conv.id !== id));
     if (currentConversationId === id) {
-      setCurrentConversationId(null); // Reseta a conversa atual se excluída
+      setCurrentConversationId(null);
     }
   };
 
@@ -46,6 +46,13 @@ function App() {
     const updatedConversations = conversations.filter(conv => conv.id !== id);
     const pinnedConversation = conversations.find(conv => conv.id === id);
     setConversations([pinnedConversation, ...updatedConversations]);
+  };
+
+  const editConversation = (id, newTitle) => {
+    const updatedConversations = conversations.map(conv => 
+      conv.id === id ? { ...conv, title: newTitle } : conv
+    );
+    setConversations(updatedConversations);
   };
 
   const createFolder = (name) => {
@@ -80,10 +87,27 @@ function App() {
   const toggleFolderVisibility = (folderId) => {
     setFolders(folders.map(folder => {
       if (folder.id === folderId) {
-        return { ...folder, isOpen: !folder.isOpen }; // Alterna a visibilidade da pasta
+        return { ...folder, isOpen: !folder.isOpen };
       }
       return folder;
     }));
+  };
+
+  // Funções para reordenar itens
+  const reorderConversations = (newConversations) => {
+    // Atualiza apenas as conversas "soltas"
+    const others = conversations.filter(conv => folders.some(folder => folder.chats.includes(conv.id)));
+    setConversations([...newConversations, ...others]);
+  };
+
+  const reorderFolders = (newFolders) => {
+    setFolders(newFolders);
+  };
+
+  const reorderFolderChats = (folderId, newChatOrder) => {
+    setFolders(folders.map(folder => 
+      folder.id === folderId ? { ...folder, chats: newChatOrder } : folder
+    ));
   };
 
   const currentConversation = conversations.find(conv => conv.id === currentConversationId);
@@ -100,8 +124,12 @@ function App() {
         onCreateFolder={createFolder}
         onDeleteFolder={deleteFolder}
         onEditFolderName={editFolderName}
+        onEditConversation={editConversation}
         onMoveToFolder={moveToFolder}
         onToggleFolderVisibility={toggleFolderVisibility}
+        onReorderConversations={reorderConversations}
+        onReorderFolders={reorderFolders}
+        onReorderFolderChats={reorderFolderChats}
         currentConversationId={currentConversationId}
       />
       <div className="main-content">
