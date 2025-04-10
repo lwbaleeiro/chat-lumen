@@ -1,0 +1,23 @@
+.message-form {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .message-input {
+    flex: 1;
+    resize: none; /* Impede que o usuário redimensione a caixa de texto manualmente */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    min-height: 60px; /* Altura mínima da caixa de texto */
+    max-height: 150px; /* Altura máxima da caixa de texto */
+    box-sizing: border-box; /* Inclui padding e borda no tamanho total */
+    overflow: auto; /* Permite rolagem se necessário */
+  }
+  
+  .message-input:focus {
+    outline: none;
+    border-color: #007bff; /* Cor de borda ao focar */
+  }
