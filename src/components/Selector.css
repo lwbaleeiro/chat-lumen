@@ -1,0 +1,46 @@
+/* Container geral para um elemento seletor (como <select> estilizado) */
+.selector {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* O elemento <select> visualmente escondido, mas funcional */
+  .selector-input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: var(--bg-input); /* Fundo de input */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-medium);
+    padding: 8px 30px 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary); /* Texto claro */
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+    min-width: 120px;
+    background-image: none;
+  }
+  
+  .selector-input:hover {
+    border-color: var(--border-color-light);
+    background-color: var(--bg-tertiary); /* Fundo sutil no hover */
+  }
+  
+  .selector-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.3);
+  }
+  
+  /* Ícone (ex: seta para baixo) posicionado dentro do seletor */
+  .selector-icon {
+    position: absolute;
+    right: 12px; /* Ajuste de posição */
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary); /* Cor secundária para o ícone */
+    pointer-events: none;
+    font-size: 16px;
+    line-height: 1;
+  }

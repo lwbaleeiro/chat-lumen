@@ -1,0 +1,37 @@
+/* Container da tela de boas-vindas */
+.welcome-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    background-color: var(--bg-primary); /* Fundo escuro principal */
+    padding: 40px 20px;
+    box-sizing: border-box;
+    color: var(--text-secondary); /* Cor de texto padrão secundária */
+  }
+  
+  /* Título na tela de boas-vindas */
+  .welcome-screen h1 {
+    font-size: 2em; /* Tamanho ajustado */
+    color: var(--text-primary); /* Texto principal claro */
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  
+  /* Parágrafo na tela de boas-vindas */
+  .welcome-screen p {
+    font-size: 1em; /* Tamanho ajustado */
+    color: var(--text-secondary); /* Texto secundário */
+    max-width: 450px;
+    line-height: 1.6;
+  }
+  
+  /* Pode adicionar um ícone grande aqui também, se desejar */
+  .welcome-screen .icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+    color: var(--border-color-light); /* Cor sutil para um ícone grande */
+  }

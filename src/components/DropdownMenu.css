@@ -1,0 +1,119 @@
+/* Estilos básicos para um menu dropdown no tema escuro */
+.dropdown-menu {
+    position: absolute;
+    background-color: var(--bg-secondary); /* Fundo intermediário */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow-md); /* Sombra mais pronunciada */
+    z-index: 100; /* Garantir que fique sobre outros elementos */
+    min-width: 150px; /* Largura mínima */
+    padding: 8px 0; /* Padding vertical interno */
+    margin-top: 4px; /* Pequeno espaço do elemento que o ativa */
+  }
+  
+.dropdown-item {
+    padding: 10px 16px; /* Padding dos itens */
+    cursor: pointer;
+    color: var(--text-primary); /* Texto claro */
+    font-size: 14px;
+    display: block; /* Ocupar largura total */
+    white-space: nowrap;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+.dropdown-item:hover {
+    background-color: var(--accent-primary); /* Fundo roxo no hover */
+    color: var(--text-tertiary); /* Texto branco */
+  }
+  
+  /* Opcional: Divisor entre itens */
+.dropdown-divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 8px 0;
+  }
+
+  /* Container principal do dropdown */
+.dropdown-menu-container {
+    position: relative; /* Necessário para posicionar o menu dropdown */
+    display: inline-block; /* Ou 'block' dependendo de onde você usa */
+  }
+  
+  /* Botão que abre/fecha o menu (ícone de 3 pontos) */
+.dropdown-toggle {
+    background: none;
+    border: none;
+    padding: 6px; /* Ajuste o padding conforme necessário */
+    color: var(--text-secondary); /* Cor do ícone */
+    cursor: pointer;
+    border-radius: var(--border-radius-small);
+    transition: background-color 0.2s, color 0.2s;
+    display: flex; /* Para centralizar o ícone se necessário */
+    align-items: center;
+    justify-content: center;
+    font-size: 16px; /* Tamanho do ícone (ajuste) */
+    line-height: 1;
+  }
+  
+.dropdown-toggle:hover {
+    background-color: var(--bg-tertiary); /* Fundo sutil no hover */
+    color: var(--text-primary); /* Ícone mais claro */
+  }
+  
+  /* O menu dropdown que aparece quando aberto */
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Posiciona abaixo do botão toggle */
+    right: 0; /* Alinha à direita do container (ajuste left/right conforme precisar) */
+    /* left: 0; */ /* Descomente se quiser alinhar à esquerda */
+    background-color: var(--bg-secondary); /* Fundo intermediário */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow-md);
+    z-index: 100;
+    min-width: 160px; /* Largura mínima */
+    padding: 8px 0; /* Padding vertical interno, sem padding horizontal nos itens */
+    margin-top: 6px; /* Pequeno espaço entre o botão e o menu */
+    overflow: hidden; /* Garante que os cantos arredondados funcionem bem */
+  }
+  
+  /* Estilo para cada botão DENTRO do menu dropdown */
+.dropdown-menu button {
+    display: block; /* Faz cada botão ocupar uma linha */
+    width: 100%; /* Ocupa toda a largura do menu */
+    text-align: left; /* Alinha o texto à esquerda */
+    background: none;
+    border: none;
+    padding: 10px 16px; /* Padding interno (vertical e horizontal) */
+    color: var(--text-primary); /* Cor do texto clara */
+    cursor: pointer;
+    font-size: 14px; /* Tamanho da fonte dos itens */
+    font-family: inherit; /* Garante a fonte correta */
+    transition: background-color 0.2s, color 0.2s;
+    white-space: nowrap; /* Evita quebra de linha */
+  }
+  
+  /* Efeito hover para os botões dentro do menu */
+.dropdown-menu button:hover {
+    background-color: var(--accent-primary); /* Fundo roxo no hover */
+    color: var(--text-tertiary); /* Texto branco */
+  }
+  
+  /* Remove foco padrão feio, mas garanta alternativas visuais */
+.dropdown-menu button:focus {
+    outline: none;
+  }
+  
+  /* Opcional: Adicionar um indicador de foco visível */
+.dropdown-menu button:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: -2px; /* Desenha o outline para dentro */
+    background-color: rgba(168, 85, 247, 0.1); /* Fundo levemente roxo */
+  }
+  
+  /* Opcional: Divisor (se você adicionar um <hr> ou <div class="divider"> no componente) */
+.dropdown-menu .divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 8px 0;
+  }

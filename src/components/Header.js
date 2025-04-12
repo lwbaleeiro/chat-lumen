@@ -1,6 +1,7 @@
 import React from 'react';
 import ModelSelector from './ModelSelector';
 import PromptSelector from './PromptSelector';
+import './Header.css';
 
 function Header() {
   return (

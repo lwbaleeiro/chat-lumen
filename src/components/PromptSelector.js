@@ -1,4 +1,5 @@
 import React from 'react';
+import './Selector.css';
 
 function PromptSelector({ selectedPrompt, setSelectedPrompt }) {
   const prompts = ['Default', 'Coding', 'Creative', 'Analysis'];

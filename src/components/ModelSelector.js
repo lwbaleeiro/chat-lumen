@@ -1,4 +1,5 @@
 import React from 'react';
+import './Selector.css';
 
 function ModelSelector({ selectedModel, setSelectedModel }) {
   const models = ['ChatGPT', 'Claude 3.5 Sonnet', 'Gemini'];

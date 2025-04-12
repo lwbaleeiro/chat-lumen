@@ -1,4 +1,5 @@
 import React from 'react';
+import './WelcomeScreen.css';
 
 const WelcomeScreen = () => {
     return (

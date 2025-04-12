@@ -1,319 +1,119 @@
-/* .sidebar {
-    background-color: #f7f7f7;
-    border-right: 1px solid #e0e0e0;
-    padding: 20px;
-    height: 100vh;
-    overflow-y: auto;
-    width: 300px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-  }
-  
-  .sidebar-title {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-  }
-   */
+/* Container da barra lateral (Lista de Chats) */
+.sidebar {
+  width: 280px; /* Um pouco mais largo */
+  background-color: var(--bg-secondary); /* Fundo intermediário */
+  padding: 16px; /* Padding ajustado */
+  border-right: 1px solid var(--border-color); /* Borda sutil */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
 
-   .folder-section {
-    margin-bottom: 20px;
-  }
-  
-  .create-folder-button {
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
-    width: 100%;
-    text-align: left;
-  }
-  
-  .create-folder-button:hover {
-    background-color: #357abd;
-  }
-  
-  .create-folder-button i {
-    margin-right: 10px;
-  }
-  
-  .create-folder-form {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .create-folder-form input {
-    flex-grow: 1;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .create-folder-form button {
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .create-folder-form button:hover {
-    background-color: #4cae4c;
-  }
-  
-  .create-folder-form button:last-child {
-    background-color: #d9534f;
-  }
-  
-  .create-folder-form button:last-child:hover {
-    background-color: #c9302c;
-  }
+/* Título dentro da sidebar (ex: "Chats") */
+.sidebar-title {
+  font-size: 16px; /* Tamanho ajustado */
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  padding: 0 8px; /* Pequeno padding horizontal */
+}
 
-  .sidebar-title i {
-    margin-right: 10px;
-    color: #4a90e2;
-  }
-  
-  .new-chat-button {
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .new-chat-button:hover {
-    background-color: #357abd;
-  }
-  
-  .folder-section {
-    margin-bottom: 20px;
-  }
-  
-  .folder-section input {
-    width: calc(100% - 10px);
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .folder-section button {
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .folder-section button:hover {
-    background-color: #4cae4c;
-  }
-  
-  .folders-container {
-    margin-bottom: 20px;
-  }
-  
-  .folder-item {
-    background-color: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    overflow: hidden;
-  }
-  
-  .folder-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
-    background-color: #f0f0f0;
-    cursor: pointer;
-  }
-  
-  .folder-header h3 {
-    margin: 0;
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .folder-drop-area {
-    padding: 5px 0;
-    transition: all 0.3s ease;
-  }
-  
-  .folder-drop-area.dragging-over {
-    background-color: rgba(74, 144, 226, 0.1);
-    border: 2px dashed #4a90e2;
-  }
-  
-  .folder-chats {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .conversation-item {
-    padding: 10px 15px;
-    border-bottom: 1px solid #f0f0f0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .conversation-item:last-child {
-    border-bottom: none;
-  }
-  
-  .conversation-item:hover {
-    background-color: #f5f5f5;
-  }
-  
-  .conversation-item.active {
-    background-color: #e6f2ff;
-  }
-  
-  .conversation-item span {
-    flex-grow: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .unsorted-container h3 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    color: #888;
-    font-size: 14px;
-    text-transform: uppercase;
-  }
-  
-  .conversation-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    background-color: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-  }
-  
-  .conversation-list.dragging-over {
-    background-color: rgba(74, 144, 226, 0.1);
-    border: 2px dashed #4a90e2;
-  }
-  
-  /* Estilo para o DropdownMenu (você pode precisar ajustar dependendo da implementação) */
-  .dropdown-menu {
-    position: relative;
-  }
-  
-  .dropdown-menu button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: #888;
-  }
-  
-  .dropdown-menu ul {
-    position: absolute;
-    right: 0;
-    top: 100%;
-    background-color: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    padding: 5px 0;
-    list-style-type: none;
-    z-index: 1000;
-  }
-  
-  .dropdown-menu ul li {
-    padding: 5px 15px;
-    cursor: pointer;
-  }
-  
-  .dropdown-menu ul li:hover {
-    background-color: #f5f5f5;
-  }
+/* Botão (Adaptado - a imagem tem "Pinned", Search, etc. Estilizando o botão existente) */
+.new-chat-button {
+  width: 100%;
+  padding: 10px 12px;
+  background-color: var(--bg-tertiary); /* Fundo um pouco diferente */
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-medium);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+  text-align: left; /* Alinhar texto à esquerda */
+  margin-bottom: 16px; /* Espaço abaixo */
+}
 
-  .folder-section {
-    margin-bottom: 20px;
-  }
-  
-  .create-folder-button {
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
-    width: 100%;
-    text-align: left;
-  }
-  
-  .create-folder-button:hover {
-    background-color: #357abd;
-  }
-  
-  .create-folder-button i {
-    margin-right: 10px;
-  }
-  
-  .create-folder-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .create-folder-form input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .create-folder-buttons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .create-folder-buttons button {
-    flex: 1;
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .create-folder-buttons button:hover {
-    background-color: #4cae4c;
-  }
-  
-  .create-folder-buttons button:last-child {
-    background-color: #d9534f;
-  }
-  
-  .create-folder-buttons button:last-child:hover {
-    background-color: #c9302c;
-  }
+.new-chat-button:hover {
+  background-color: var(--border-color);
+  border-color: var(--border-color-light);
+}
+
+/* Lista de conversas */
+.conversation-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin: 0 -8px; /* Compensa padding dos itens para alinhar scrollbar */
+  padding: 0 8px; /* Padding interno para os itens */
+}
+
+/* Item individual na lista de conversas */
+.conversation-item {
+  padding: 12px 16px; /* Padding aumentado */
+  margin-bottom: 4px; /* Espaço menor entre itens */
+  border-radius: var(--border-radius-medium);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 14px;
+  color: var(--text-secondary); /* Cor secundária por padrão */
+  position: relative; /* Para possíveis elementos filhos absolutos (ex: contador) */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.conversation-item:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary); /* Texto fica mais claro no hover */
+}
+
+/* Estilo para o item de conversa ativo */
+.conversation-item.active {
+  background-color: var(--accent-primary); /* Fundo roxo */
+  color: var(--text-tertiary); /* Texto branco */
+  font-weight: 600; /* Mais destaque */
+}
+.conversation-item.active:hover {
+  background-color: var(--accent-primary-hover); /* Roxo mais escuro no hover */
+}
+
+/* --- Estilos de Pastas (se aplicável) --- */
+.folder-section {
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.folder-section h3 { /* Estilo do título da pasta */
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* Input dentro da seção de pastas (ex: para nome da pasta) */
+.folder-section input {
+  margin-right: 10px;
+  padding: 6px 10px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-small);
+  color: var(--text-primary);
+  font-size: 13px;
+}
+.folder-section input:focus {
+   outline: none;
+   border-color: var(--accent-primary);
+   box-shadow: 0 0 0 1px var(--accent-primary);
+}
+
+
+/* Estilos de Drag & Drop para tema escuro */
+.folder-chats.dragging-over,
+.folder-drop-area.dragging-over {
+  background-color: rgba(255, 255, 255, 0.05); /* Fundo sutilmente mais claro */
+  border: 1px dashed var(--accent-primary); /* Borda roxa tracejada */
+}
+
+.folder-drop-area.dragging-over {
+  padding: 10px;
+}

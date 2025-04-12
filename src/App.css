@@ -1,282 +1,114 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+/* Importa a fonte global */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'); /* Adicionado peso 700 */
 
-body {
-  font-family: 'Inter', sans-serif;
+/* Definição das variáveis de cor baseadas na imagem */
+:root {
+  --bg-primary: #1A1D21; /* Fundo mais escuro (Chat Area) */
+  --bg-secondary: #2C2F33; /* Fundo intermediário (Sidebar/Painéis) */
+  --bg-tertiary: #36393F; /* Fundo sutilmente mais claro (ex: bolha AI) */
+  --bg-input: #25282C; /* Fundo para campos de input */
+
+  --text-primary: #E0E0E0; /* Texto principal (claro) */
+  --text-secondary: #9FA6B0; /* Texto secundário/muted (cinza) */
+  --text-tertiary: #FFFFFF; /* Texto sobre fundos coloridos (branco) */
+  --text-placeholder: #70747A; /* Cor para placeholders */
+
+  --accent-primary: #A855F7; /* Roxo principal */
+  --accent-primary-hover: #9333EA; /* Roxo para hover */
+
+  --border-color: #3F4246; /* Cor sutil para bordas */
+  --border-color-light: #50545A; /* Borda um pouco mais clara (hover/focus) */
+
+  --font-family-base: 'Inter', sans-serif;
+
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 12px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
+/* Estilos base para o corpo do documento */
+body {
+  font-family: var(--font-family-base);
+  margin: 0;
+  background-color: var(--bg-primary); /* Fundo geral escuro */
+  color: var(--text-primary); /* Cor de texto padrão clara */
+  font-size: 14px; /* Tamanho de fonte base */
+  line-height: 1.5;
+  overflow: hidden; /* Evitar scroll no body */
+}
+
+/* Container principal da aplicação */
 .app {
   display: flex;
   height: 100vh;
-  background-color: #f9fafb;
+  background-color: var(--bg-secondary); /* Fundo da área geral da app */
 }
 
-.sidebar {
-  width: 260px;
-  background-color: #f3f4f6;
-  padding: 20px;
-  border-right: 1px solid #e5e7eb;
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #111827;
-  margin-bottom: 20px;
-}
-
-.new-chat-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #e5e7eb;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #374151;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.new-chat-button:hover {
-  background-color: #d1d5db;
-}
-
-.conversation-list {
-  list-style-type: none;
-  padding: 0;
-  margin-top: 20px;
-  flex-grow: 1;
-  overflow-y: auto;
-  max-height: 70vh; /* ou outro valor adequado */
-}
-
-.conversation-item {
-  padding: 10px;
-  margin-bottom: 5px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.conversation-item:hover {
-  background-color: #e5e7eb;
-}
-
+/* Container para o conteúdo principal (direita da sidebar) */
+/* (A imagem tem ChatArea + Painel Direito, este envolve ambos) */
 .main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  background-color: var(--bg-primary); /* Fundo escuro da área central */
 }
 
-.app-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.header-controls {
-  display: flex;
-  gap: 10px;
-}
-
-.icon-button {
-  padding: 8px 12px;
-  background-color: #f3f4f6;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #374151;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.icon-button:hover {
-  background-color: #e5e7eb;
-}
-
-.chat-area {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
-
-.messages {
-  flex: 1;
-  overflow-y: auto;
-  margin-bottom: 20px;
-}
-
-.message {
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 6px;
-  max-width: 80%;
-}
-
-.message.you {
-  align-self: flex-end;
-  background-color: #dbeafe;
-}
-
-.message-form {
-  display: flex;
-  gap: 10px;
-}
-
-.message-input {
-  flex: 1;
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-}
-
-.send-button {
-  padding: 10px 20px;
-  background-color: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.send-button:hover {
-  background-color: #1d4ed8;
-}
-
-.selector {
-  position: relative;
-  display: inline-block;
-}
-
-.selector-input {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: #f3f4f6;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  padding: 8px 30px 8px 12px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #374151;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.selector-input:hover {
-  background-color: #e5e7eb;
-}
-
-.selector-icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #6b7280;
-  pointer-events: none;
-}
-
-.header-controls {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.header-actions {
-  display: flex;
-  align-items: center;
-}
-
-.conversation-item.active {
-  background-color: #e5e7eb;
-  font-weight: 600;
-}
-
-.messages {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.message {
-  padding: 10px;
-  border-radius: 8px;
-  max-width: 80%;
-}
-
-.message.you {
-  align-self: flex-end;
-  background-color: #dbeafe;
-}
-
-.message.ai {
-  align-self: flex-start;
-  background-color: #f3f4f6;
-}
-
-.welcome-screen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  text-align: center;
-  background-color: #f9f9f9; /* Cor de fundo suave */
-  padding: 20px;
-}
-
-.welcome-screen h1 {
-  font-size: 2.5em;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.welcome-screen p {
-  font-size: 1.2em;
-  color: #666;
-}
-
-.folder-section {
-  margin-bottom: 20px;
-}
-
-.folder-section input {
-  margin-right: 10px;
-  padding: 5px;
+/* Estilos genéricos (ajustados para tema escuro) */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  margin-top: 0;
+  font-weight: 600; /* Um pouco mais de peso */
 }
 
 h3 {
   cursor: pointer;
+  font-size: 1em; /* Tamanho base */
 }
 
 ul {
   list-style-type: none;
-  padding-left: 20px;
+  padding-left: 0;
+  margin: 0;
 }
 
+/* Estilo base para botões (será sobrescrito, mas define o cursor) */
 button {
-  margin-left: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  border: none; /* Remover borda padrão */
+  background: none; /* Remover fundo padrão */
+  color: inherit; /* Herdar cor do texto */
+  padding: 0; /* Remover padding padrão */
 }
 
-.folder-chats.dragging-over {
-  background-color: rgba(0, 0, 0, 0.1);
-  border: 2px dashed #666;
+/* Estilos para scrollbars (Opcional, mas melhora a estética no dark mode) */
+/* Para Webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-.folder-drop-area {
-  transition: all 0.3s ease;
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 4px;
 }
 
-.folder-drop-area.dragging-over {
-  background-color: rgba(0, 0, 0, 0.1);
-  border: 2px dashed #666;
-  padding: 10px;
+::-webkit-scrollbar-thumb {
+  background-color: var(--border-color-light);
+  border-radius: 4px;
+  border: 2px solid var(--bg-secondary); /* Cria um padding visual */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-secondary);
+}
+
+/* Para Firefox (mais limitado) */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color-light) var(--bg-secondary);
 }
